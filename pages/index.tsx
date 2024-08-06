@@ -12,7 +12,6 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const dispach: any = useDispatch();
   const [todo, setTodo] = useState("");
-  const { response } = useSelector(todos);
 
   function handleSubmit(e: FormEvent): void {
     e.preventDefault();
@@ -21,7 +20,7 @@ export default function Home() {
       return;
     }
     dispach(createTodo(todo));
-    showToast(response);
+    showToast("Todo added successfully");
     setTodo("");
   }
 
