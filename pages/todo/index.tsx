@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps<{ todoItems: TodoItem[] }> =
 export default function Home({
   todoItems,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch: any = useDispatch();
   const { todoItems: clientTodoItems, status, error } = useSelector(todos);
 
   // Optionally use useEffect to update client-side state if needed
@@ -70,7 +70,7 @@ export default function Home({
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    dispatch(editTodo({ editedValue, editId })).then((result) => {
+    dispatch(editTodo({ editedValue, editId })).then((result: any) => {
       if (editTodo.fulfilled.match(result)) {
         showToast("Todo edited successfully");
       } else if (editTodo.rejected.match(result)) {
@@ -81,13 +81,16 @@ export default function Home({
   }
 
   function handleDelete(e: ChangeEvent<HTMLButtonElement>) {
-    dispatch(deleteTodo(e.target.closest("li")?.id)).then((result) => {
-      if (deleteTodo.fulfilled.match(result)) {
-        showToast("Todo deleted successfully");
-      } else if (deleteTodo.rejected.match(result)) {
-        showErrorToast(result.payload || "Failed to delete todo");
-      }
-    });
+    const id = e.target.closest("li")?.id;
+    if (id) {
+      dispatch(deleteTodo(id)).then((result: any) => {
+        if (deleteTodo.fulfilled.match(result)) {
+          showToast("Todo deleted successfully");
+        } else if (deleteTodo.rejected.match(result)) {
+          showErrorToast(result.payload || "Failed to delete todo");
+        }
+      });
+    }
   }
 
   function showToast(toastMessage: string) {
@@ -161,20 +164,23 @@ export default function Home({
       <h1 className="text-3xl mb-3">Your Todos</h1>
       <div className="border border-black rounded-md p-5">
         <ul className="grid grid-cols-4 gap-[20px]">
-          {itemsToDisplay?.slice(0).reverse().map((todo) => (
-            <Todo
-              key={todo._id}
-              todo={todo.todo}
-              id={todo._id}
-              handleEdit={(e) => {
-                handleEdit(e);
-                handleEditValue(todo.todo);
-              }}
-              handleDelete={(e) => {
-                handleDelete(e);
-              }}
-            />
-          ))}
+          {itemsToDisplay
+            ?.slice(0)
+            .reverse()
+            .map((todo: TodoItem) => (
+              <Todo
+                key={todo._id}
+                todo={todo.todo}
+                id={todo._id}
+                handleEdit={(e: ChangeEvent<HTMLButtonElement>) => {
+                  handleEdit(e);
+                  handleEditValue(todo.todo);
+                }}
+                handleDelete={(e: ChangeEvent<HTMLButtonElement>) => {
+                  handleDelete(e);
+                }}
+              />
+            ))}
         </ul>
       </div>
     </div>
