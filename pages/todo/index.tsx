@@ -122,7 +122,7 @@ export default function Home({
   }
 
   return (
-    <div className={`${inter.className} p-10`}>
+    <div className={`${inter.className} p-10 pt-36 md:pt-10 min-[400px]:pt-20`}>
       {isModalOpen && (
         <div className="fixed inset-0 backdrop-blur-sm w-screen h-screen z-50 flex items-center justify-center">
           <form
@@ -163,7 +163,7 @@ export default function Home({
       )}
       <h1 className="text-3xl mb-3">Your Todos</h1>
       <div className="border border-black rounded-md p-5">
-        <ul className="grid grid-cols-4 gap-[20px]">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[20px]">
           {itemsToDisplay
             ?.slice(0)
             .reverse()

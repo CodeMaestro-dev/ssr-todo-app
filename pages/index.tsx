@@ -60,7 +60,7 @@ export default function Home() {
   }
 
   return (
-    <div className={`${inter.className} p-10`}>
+    <div className={`${inter.className} p-10 pt-36 md:pt-10 min-[400px]:pt-20`}>
       <h1 className="text-3xl mb-3">Add Todo</h1>
       <div className="border border-black rounded-md flex items-center justify-center p-5">
         <form
