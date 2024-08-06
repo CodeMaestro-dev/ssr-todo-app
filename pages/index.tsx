@@ -10,7 +10,7 @@ import { AppDispatch } from "@/lib/store";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const dispach: AppDispatch = useDispatch();
+  const dispach: any = useDispatch();
   const [todo, setTodo] = useState("");
   const { response } = useSelector(todos);
 
