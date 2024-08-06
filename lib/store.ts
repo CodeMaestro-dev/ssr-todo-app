@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import crudOperations from './features/crudOperations';
 
 // Define makeStore function
-const makeStore: MakeStore = () => configureStore({
+const makeStore: MakeStore<ReturnType<typeof configureStore>> = () => configureStore({
   reducer: {
     crudTodo: crudOperations,
   },
@@ -16,4 +16,4 @@ export type RootState = ReturnType<ReturnType<typeof makeStore>['getState']>;
 export type AppDispatch = ReturnType<typeof makeStore>['dispatch'];
 
 // Create wrapper
-export const wrapper = createWrapper(makeStore);
+export const wrapper = createWrapper<ReturnType<typeof configureStore>>(makeStore);
