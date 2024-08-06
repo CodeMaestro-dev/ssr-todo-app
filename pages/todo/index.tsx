@@ -21,13 +21,13 @@ interface TodoItem {
 }
 
 export const getServerSideProps: GetServerSideProps<{ todoItems: TodoItem[] }> =
-  wrapper.getServerSideProps((store) => async () => {
+  wrapper.getServerSideProps((store: any) => async () => {
     try {
       // Dispatch action to fetch todos
       await store.dispatch(getTodo());
 
       // Access the Redux state directly
-      const state = store.getState();
+      const state: any = store.getState();
       const todoItems = state.crudTodo.todoItems;
       return { props: { todoItems: todoItems as TodoItem[] } };
     } catch (error) {
