@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import Todo from "@/components/Todo";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
-import { AppDispatch, wrapper } from "@/lib/store";
+import { wrapper } from "@/lib/store";
 import {
   deleteTodo,
   editTodo,

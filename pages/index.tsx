@@ -1,11 +1,8 @@
-import Image from "next/image";
 import { Inter } from "next/font/google";
-import Link from "next/link";
 import { useState, FormEvent, ChangeEvent } from "react";
 import Toastify from "toastify-js";
-import { useDispatch, useSelector } from "react-redux";
-import { createTodo, todos } from "@/lib/features/crudOperations";
-import { AppDispatch } from "@/lib/store";
+import { useDispatch } from "react-redux";
+import { createTodo } from "@/lib/features/crudOperations";
 
 const inter = Inter({ subsets: ["latin"] });
 
