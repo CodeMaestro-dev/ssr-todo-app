@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { RootState } from "../store"; // Adjust the import according to your store file location
 
 // Define types for Todo and state
 interface Todo {
@@ -164,5 +163,5 @@ const crudOperations = createSlice({
   },
 });
 
-export const todos = (state: RootState) => state.crudTodo;
+export const todos = (state: any) => state.crudTodo;
 export default crudOperations.reducer;
